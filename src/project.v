@@ -61,10 +61,11 @@ full_adder inst10 (int_sig_out5, int_sig14, carryout9, carryout10, p[4]);
 full_adder inst11 (int_sig_out6, int_sig15, carryout10, carryout11, p[5]);
 full_adder inst12 (carryout8, int_sig16, carryout11, p[7], p[6]);
   assign uio_out = 0;
-  assign uio_oe  = p;
+  assign uio_oe  = 0;
+    assign uo_out = p; 
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena, clk, rst_n, 1'b0};
+    wire _unused = &{ena, clk, uio_in, rst_n, 1'b0};
 
 endmodule
 
