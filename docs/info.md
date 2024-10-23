@@ -9,11 +9,11 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+This is a 4x4 array muliplier that takes in two 4-bit factors, m and 1, and uses a full adder to output an 8-bit product of m and q, p.
 
 ## How to test
 
-Explain how to use your project
+Test the multiplier with a test bench of 10 varrying values of 4-bit factors with their multiplcation value. This is an unsigned decimal multiplier. 
 
 ## External hardware
 
