@@ -9,7 +9,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-This is a 4x4 array muliplier that takes in two 4-bit factors, m and 1, and uses a full adder to output an 8-bit product of m and q, p.
+This is a 4x4 array muliplier that takes in two 4-bit factors, m and q, and uses a full adder to output an 8-bit product of m and q, p.
 
 ## How to test
 
