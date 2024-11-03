@@ -8,9 +8,10 @@ You can also include images in this folder and reference them in the markdown. E
 -->
 
 ## How it works
-
+ 
+A 4x4 multiplier is a digital circuit that multiplies two 4-bit binary numbers to produce an 8-bit result. It works by generating partial products: each bit of one 4-bit number is multiplied by each bit of the other, producing 16 partial results. These are then organized in rows, with each row shifted left according to the position of the bit being multiplied. Finally, the rows are summed using binary adders, yielding the final 8-bit product representing the multiplication result
+![IMG_30A62AABF04E-1](https://github.com/user-attachments/assets/d7270170-18e2-4cad-9b91-6c62703ff691)
 This is a 4x4 array muliplier that takes in two 4-bit factors, m and q, and uses a full adder to output an 8-bit product of m and q, p.
-![evidence 5](https://github.com/user-attachments/assets/75cd86a3-34c0-485a-bcfd-f6db0bcb4c9d)
 
 ## How to test
 
