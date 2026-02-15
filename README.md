@@ -11,7 +11,7 @@ In software, writing a * b looks like a primitive operation. In hardware, multip
 ## Architecture
 The design follows a standard array multiplier architecture. Each bit of the multiplicand is ANDed with each bit of the multiplier to generate partial products. The partial products are aligned according to bit significance, then summed using a network of adders. Carries propagate across the array and the final binary product is produced.
 
-![Array Multiplier Diagram](multiplier_diagram.jpg)
+![Array Multiplier Diagram](multiplier_diagram.jpeg)
 
 Hand-drawn block diagram of the array multiplier architecture showing partial product generation and carry propagation.
 
