@@ -1,41 +1,49 @@
-![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
+# Binary Array Multiplier (Verilog)
 
-# Tiny Tapeout Verilog Project Template
+## Overview
+This project implements a combinational binary array multiplier in Verilog. The circuit multiplies two unsigned binary integers by explicitly constructing the multiplication process from logic gates and adders rather than using built-in arithmetic operators.
 
-- [Read the documentation for project](docs/info.md)
+The purpose of the project was to understand how multiplication, which appears as a single instruction in software, is actually realized at the hardware level inside digital systems.
 
-## What is Tiny Tapeout?
+## Motivation
+In software, writing a * b looks like a primitive operation. In hardware, multiplication must be built from simpler digital components. AND gates create partial products, half adders and full adders accumulate sums, and carry signals propagate across the circuit. This project explores that structure directly using a hardware description language.
 
-Tiny Tapeout is an educational project that aims to make it easier and cheaper than ever to get your digital and analog designs manufactured on a real chip.
+## Architecture
+The design follows a standard array multiplier architecture. Each bit of the multiplicand is ANDed with each bit of the multiplier to generate partial products. The partial products are aligned according to bit significance, then summed using a network of adders. Carries propagate across the array and the final binary product is produced.
 
-To learn more and get started, visit https://tinytapeout.com.
+Conceptually:
+Partial Products -> Adder Network -> Final Product
 
-## Set up your Verilog project
+This mirrors how arithmetic logic units implement multiplication inside processors.
 
-1. Add your Verilog files to the `src` folder.
-2. Edit the [info.yaml](info.yaml) and update information about your project, paying special attention to the `source_files` and `top_module` properties. If you are upgrading an existing Tiny Tapeout project, check out our [online info.yaml migration tool](https://tinytapeout.github.io/tt-yaml-upgrade-tool/).
-3. Edit [docs/info.md](docs/info.md) and add a description of your project.
-4. Adapt the testbench to your design. See [test/README.md](test/README.md) for more information.
+## Key Components
+Partial Product Generation:
+Each pair of input bits produces a partial product according to P(i,j) = Ai AND Bj. These partial products form the multiplication matrix.
 
-The GitHub action will automatically build the ASIC files using [OpenLane](https://www.zerotoasiccourse.com/terminology/openlane/).
+Addition Network:
+The partial products are accumulated using half adders, which combine two bits into a sum and carry, and full adders, which combine three bits into a sum and carry. Carry signals propagate through the array to produce the final result.
 
-## Enable GitHub actions to build the results page
+## Files
+array_multiplier.v - top-level multiplier module  
+half_adder.v - half adder implementation  
+full_adder.v - full adder implementation  
+testbench.v - simulation and verification
 
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+## Verification
+A Verilog testbench is used to validate correctness. Multiple binary input pairs are applied, the circuit is simulated, and the output product is compared to expected multiplication results. The simulation confirms correct behavior for representative input cases.
 
-## Resources
+## What This Demonstrates
+This project highlights several digital design concepts. Arithmetic operations are constructed from basic logic gates. Hardware performs computation structurally rather than procedurally. Carry propagation is an important consideration in circuit design. Hardware description languages model real physical computation.
 
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
-- [Build your design locally](https://www.tinytapeout.com/guides/local-hardening/)
+It connects high-level programming abstractions to the underlying circuitry executed by a processor.
 
-## What next?
+## Possible Extensions
+Potential improvements include signed multiplication using two’s complement representation, implementing a Booth multiplier, pipelining the multiplier architecture, and synthesizing the design on FPGA hardware with timing analysis.
 
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
+## Technologies
+Verilog HDL  
+Digital logic design  
+Combinational circuit simulation
+
+## Takeaway
+This project provides a concrete example of how high-level arithmetic operations are implemented at the circuit level and helps bridge the gap between software programming and computer architecture.
